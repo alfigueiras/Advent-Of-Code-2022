@@ -4,34 +4,34 @@ data=[]
 for string in file:
     r_string=string.replace("\n","")
     s1,s2=r_string[:len(r_string)//2], r_string[len(r_string)//2:]
-    
     data.append([s1,s2])
 
+file.close()
+
 #PART 1
-def common_element_priority(pair):
-    found=False
+def common_elements(pair):
     i=0
-    while i<len(pair[0]) and not found:
+    common=[]
+    while i<len(pair[0]):
         j=0
-        letter="a"
         while j<len(pair[1]):
             if pair[0][i]==pair[1][j]:
-                found=True
-                letter=pair[0][i]          
+                if pair[0][i] not in common:
+                    common.append(pair[0][i])          
             j+=1
         i+=1     
-    if letter.isupper():
-        priority=ord(letter)-38
-    else:
-        priority=ord(letter)-96
-    return priority
+    return common
 
-priorites_sum=0
+priorities_sum=0
 for pair in data:
-    priorites_sum+=common_element_priority(pair)
-print(priorites_sum)
+    for l in common_elements(pair):
+        if str(l).isupper():
+            priorities_sum+=ord(l)-38
+        else:
+            priorities_sum+=ord(l)-96
+print(priorities_sum)
 
 #PART 2
+file=open("AdventOfCode/Day 3/data03.txt", "r")
 
-    
-
+data2=[]
