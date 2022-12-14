@@ -33,5 +33,22 @@ print(priorities_sum)
 
 #PART 2
 file=open("AdventOfCode/Day 3/data03.txt", "r")
-
 data2=[]
+
+for string in file:
+    r_string=string.replace("\n","")
+    data2.append(r_string)
+
+i=0
+order_sum=0
+while i<len(data2)//3:
+    common1_2=common_elements([data2[3*i], data2[3*i+1]])
+    letter=str(common_elements([common1_2, data2[3*i+2]])[0])
+    if letter.isupper():
+        order_sum+=ord(letter)-38
+    else:
+        order_sum+=ord(letter)-96
+    i+=1
+
+print(order_sum)
+    
